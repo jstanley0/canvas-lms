@@ -111,20 +111,13 @@ define([
       else if (!INST.disableScribdPreviews && opts.scribd_doc_id && opts.scribd_access_key &&
           (scribdHtml5 || scribd && hasGoodEnoughFlash)) {
         if (scribdHtml5) {
-          var scribdParams = $.extend({
-              'auto_size': false,
-              'height': opts.height,
-              'jsapi_version': 2
-            }, opts.scribdParams);
-
-          var scribdIframeUrl = '//www.scribd.com/embeds/' + opts.scribd_doc_id + '/content?' + $.param({
-              start_page: 1,
-              view_mode: 'list',
+          var scribdIframeUrl = '/scribd_embed?' + $.param({
+              scribd_doc_id: opts.scribd_doc_id,
               access_key: opts.scribd_access_key
             });
 
-          $('<iframe class="scribd_iframe_embed" src="' + scribdIframeUrl + '" height="' + scribdParams.height  +
-              '" data-auto-height="' + scribdParams.auto_size + '" width="100%" />')
+          $('<iframe class="scribd_iframe_embed" src="' + scribdIframeUrl + '" height="' + opts.height +
+              '" width="100%" />')
             .appendTo($this)
             .load(function() {
                 tellAppIViewedThisInline('scribd');

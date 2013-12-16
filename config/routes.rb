@@ -56,6 +56,8 @@ routes.draw do
   match 'mr/:id' => 'info#message_redirect', :as => :message_redirect
   match 'help_links' => 'info#help_links', :as => :help_links
 
+  match 'scribd_embed' => 'scribd_previews#show'
+
   concern :question_banks do
     resources :question_banks do
       match 'bookmark' => 'question_banks#bookmark', :as => :bookmark
